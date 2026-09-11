@@ -1,22 +1,13 @@
 # CAMARA Industrial Predictive Maintenance Platform
 
-> **Network-Aware Equipment Degradation Forecasting for Industrial Infrastructure Across the MENA Region**  
-> **Event:** MENA Open Gateway Hackathon  
-> **Theme:** Theme 5 — Industrial & Enterprise Automation  
-> **Team:** Phu Four (Philadelphia University — Amman, Jordan)  
-> **Members:** Laith Ghanayem, Obay Nour Al Deen, Hasan Dawood, Abdulrahman Habib  
-> **Target Framework:** Nokia Network-as-Code | CAMARA Alliance Standardized APIs  
-
 ---
 
-## 1. Executive Summary & Commercial Value
-
 ### 1.1 The Industrial Challenge: The High Cost of Unplanned Downtime
-Across the Middle East and North Africa (MENA), critical industrial machinery operates under severe environmental stresses—desert heat, abrasive sand, offshore salt humidity, and remote physical isolation. When heavy rotating equipment (crude oil extraction pumps, gas turbines, marine container quay cranes, and automated conveyor systems) suffers catastrophic failure, the financial toll is immediate:
 
-* **Upstream Oil & Gas Facilities (e.g., Ghawar, Ras Tanura):** Production stoppages average **$15,000 to $45,000 per hour** in lost extraction volume, flared reserves, and delayed throughput.
-* **Maritime Port Terminals (e.g., Port Said, Jebel Ali):** Berth crane failures disrupt shipping schedules, triggering demurrage penalties of **$10,000 to $25,000 per hour**.
-* **Continuous Manufacturing & Petrochemical Plants:** Emergency line freezes cause irreversible thermal cracking and material solidification, leading to multi-day restarts.
+Industrial equipment in the MENA region fails unexpectedly, causing downtime and financial losses. Equipment failures in oil and gas operations cost between $500,000 and $2 million each day in production. Manufacturing sectors face supply chain disruptions while logistics and port operations pay between $10,000 and $50,000 per hour for container fees.
+The main problem comes from reactive run‑to‑failure maintenance models. Industrial equipment runs until it breaks down and then emergency teams rush for hours or days to fix it. Current maintenance methods do not give a view of device health signals such as battery level, temperature, vibration, or cellular connectivity. In areas where connectivity is poor, industrial equipment failures stay unnoticed until production stops.
+The annual cost to the MENA sector is more than $50 billion and less than $100 billion in unplanned downtime.
+
 
 ### 1.2 The "Silent Failure" Problem: Why Traditional IoT Fails
 Existing predictive maintenance solutions rely exclusively on isolated device sensors (vibration and temperature) transmitting over standard public cellular links. In remote industrial sectors, cellular towers regularly undergo resource block saturation or RF fade.
@@ -203,8 +194,6 @@ The application provides three pre-configured operational scenarios accessible v
   3. The platform initiates QoS slice reservation and schedules an emergency work order before catastrophic field trip.
 
 ---
-
-## 4. Comprehensive Dashboard Architecture & User Guide
 
 The dashboard is structured into five functional modules, accessible via top navigation tabs:
 
