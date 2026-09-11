@@ -9,9 +9,8 @@ import { DeviceTable } from './components/DeviceTable';
 import { AutomatedActionsFeed } from './components/AutomatedActionsFeed';
 import { SilentFailureComparison } from './components/SilentFailureComparison';
 import { RoiCalculator } from './components/RoiCalculator';
-import { JudgePitchGuide } from './components/JudgePitchGuide';
 import { FleetHealthSummary } from './components/FleetHealthSummary';
-import { LayoutDashboard, Network, Database, ShieldAlert, DollarSign, Radio, Layers } from 'lucide-react';
+import { LayoutDashboard, Network, Database, ShieldAlert, DollarSign, Radio } from 'lucide-react';
 
 export default function App() {
   // Agent Instance
@@ -38,7 +37,6 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<'dashboard' | 'orchestrator' | 'fleet' | 'silent_failure' | 'roi'>('dashboard');
   const [sectorFilter, setSectorFilter] = useState<'all' | IndustrialSector>('all');
   const [showCongestionOverlay, setShowCongestionOverlay] = useState<boolean>(true);
-  const [isPitchModalOpen, setIsPitchModalOpen] = useState<boolean>(false);
 
   // Synchronize state from agent
   const syncState = () => {
@@ -131,7 +129,7 @@ export default function App() {
   const activeQoSSlices = alerts.filter(a => a.action_taken?.toLowerCase().includes('qos')).length;
 
   return (
-    <div className="min-h-screen bg-slate-100 text-slate-900 flex flex-col selection:bg-orange-500/20 selection:text-orange-900">
+    <div className="min-h-screen bg-[#181a1f] text-white flex flex-col selection:bg-[#98cc65]/30 selection:text-white">
       {/* Top Header & Simulation Controls */}
       <Header
         cycleCount={cycleCount}
@@ -143,94 +141,93 @@ export default function App() {
         onToggleRunning={handleToggleRunning}
         onRunSingleCycle={handleRunSingleCycle}
         onReset={handleReset}
-        onOpenPitchModal={() => setIsPitchModalOpen(true)}
         onInjectDemoFailure={() => handleInjectFailure('device_007')}
         speedMultiplier={speedMultiplier}
         onChangeSpeed={setSpeedMultiplier}
       />
 
       {/* Main Navigation Tabs */}
-      <div className="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-2xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-3">
-          <nav className="flex space-x-1 sm:space-x-3 text-xs overflow-x-auto py-1">
+      <div className="bg-[#20242c] border-b border-slate-700/80 sticky top-0 z-20 shadow-2xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-4 py-1.5">
+          <nav className="flex space-x-2 text-xs overflow-x-auto py-1">
             <button
               onClick={() => setActiveTab('dashboard')}
-              className={`py-2.5 px-3.5 border-b-2 font-medium flex items-center gap-2 transition-all whitespace-nowrap ${
+              className={`py-2 px-3.5 rounded-lg border font-medium flex items-center gap-2 transition-all whitespace-nowrap ${
                 activeTab === 'dashboard'
-                  ? 'border-orange-500 text-slate-900 font-bold bg-orange-50/30'
-                  : 'border-transparent text-slate-500 hover:text-slate-900'
+                  ? 'border-[#98cc65]/70 text-white font-bold bg-[#98cc65]/20'
+                  : 'border-transparent text-slate-300 hover:text-white hover:bg-slate-800/40'
               }`}
             >
-              <LayoutDashboard className="w-4 h-4" />
+              <LayoutDashboard className="w-4 h-4 text-[#98cc65]" />
               <span>Operations Overview</span>
             </button>
 
             <button
               onClick={() => setActiveTab('orchestrator')}
-              className={`py-2.5 px-3.5 border-b-2 font-medium flex items-center gap-2 transition-all whitespace-nowrap ${
+              className={`py-2 px-3.5 rounded-lg border font-medium flex items-center gap-2 transition-all whitespace-nowrap ${
                 activeTab === 'orchestrator'
-                  ? 'border-orange-500 text-slate-900 font-bold bg-orange-50/30'
-                  : 'border-transparent text-slate-500 hover:text-slate-900'
+                  ? 'border-[#98cc65]/70 text-white font-bold bg-[#98cc65]/20'
+                  : 'border-transparent text-slate-300 hover:text-white hover:bg-slate-800/40'
               }`}
             >
-              <Network className="w-4 h-4" />
+              <Network className="w-4 h-4 text-[#98cc65]" />
               <span>CAMARA API Orchestration</span>
             </button>
 
             <button
               onClick={() => setActiveTab('fleet')}
-              className={`py-2.5 px-3.5 border-b-2 font-medium flex items-center gap-2 transition-all whitespace-nowrap ${
+              className={`py-2 px-3.5 rounded-lg border font-medium flex items-center gap-2 transition-all whitespace-nowrap ${
                 activeTab === 'fleet'
-                  ? 'border-orange-500 text-slate-900 font-bold bg-orange-50/30'
-                  : 'border-transparent text-slate-500 hover:text-slate-900'
+                  ? 'border-[#98cc65]/70 text-white font-bold bg-[#98cc65]/20'
+                  : 'border-transparent text-slate-300 hover:text-white hover:bg-slate-800/40'
               }`}
             >
-              <Database className="w-4 h-4" />
+              <Database className="w-4 h-4 text-[#98cc65]" />
               <span>Asset Inventory (50 Nodes)</span>
             </button>
 
             <button
               onClick={() => setActiveTab('silent_failure')}
-              className={`py-2.5 px-3.5 border-b-2 font-medium flex items-center gap-2 transition-all whitespace-nowrap ${
+              className={`py-2 px-3.5 rounded-lg border font-medium flex items-center gap-2 transition-all whitespace-nowrap ${
                 activeTab === 'silent_failure'
-                  ? 'border-orange-500 text-slate-900 font-bold bg-orange-50/30'
-                  : 'border-transparent text-slate-500 hover:text-slate-900'
+                  ? 'border-[#98cc65]/70 text-white font-bold bg-[#98cc65]/20'
+                  : 'border-transparent text-slate-300 hover:text-white hover:bg-slate-800/40'
               }`}
             >
-              <ShieldAlert className="w-4 h-4" />
+              <ShieldAlert className="w-4 h-4 text-[#98cc65]" />
               <span>Network Dependency Architecture</span>
             </button>
 
             <button
               onClick={() => setActiveTab('roi')}
-              className={`py-2.5 px-3.5 border-b-2 font-medium flex items-center gap-2 transition-all whitespace-nowrap ${
+              className={`py-2 px-3.5 rounded-lg border font-medium flex items-center gap-2 transition-all whitespace-nowrap ${
                 activeTab === 'roi'
-                  ? 'border-orange-500 text-slate-900 font-bold bg-orange-50/30'
-                  : 'border-transparent text-slate-500 hover:text-slate-900'
+                  ? 'border-[#98cc65]/70 text-white font-bold bg-[#98cc65]/20'
+                  : 'border-transparent text-slate-300 hover:text-white hover:bg-slate-800/40'
               }`}
             >
-              <DollarSign className="w-4 h-4" />
+              <DollarSign className="w-4 h-4 text-[#98cc65]" />
               <span>Maintenance Economics</span>
             </button>
           </nav>
 
           {/* Map Layer quick toggles */}
           {activeTab === 'dashboard' && (
-            <div className="flex items-center gap-3 text-xs text-slate-600 py-1.5">
+            <div className="flex items-center gap-3 text-xs text-slate-300 py-1.5">
               <label className="flex items-center gap-1.5 cursor-pointer select-none">
                 <input
                   type="checkbox"
                   checked={showCongestionOverlay}
                   onChange={e => setShowCongestionOverlay(e.target.checked)}
-                  className="rounded border-slate-300 text-orange-600 focus:ring-0 w-3.5 h-3.5"
+                  className="rounded border-slate-600 bg-[#181a1f] text-[#98cc65] focus:ring-0 w-3.5 h-3.5"
                 />
-                <span className="text-xs font-medium text-slate-700">Cell Congestion Layer</span>
+                <span className="text-xs font-medium text-slate-200">Cell Congestion Layer</span>
               </label>
 
               <select
                 value={sectorFilter}
                 onChange={e => setSectorFilter(e.target.value as any)}
-                className="bg-white border border-slate-300 text-xs text-slate-800 rounded-lg px-2.5 py-1 focus:outline-none shadow-2xs font-medium"
+                className="bg-[#181a1f] border border-slate-700 text-xs text-white rounded-lg px-2.5 py-1.5 focus:outline-none shadow-2xs font-medium"
               >
                 <option value="all">All Sectors</option>
                 <option value="oil_gas">Oil &amp; Gas</option>
@@ -243,12 +240,12 @@ export default function App() {
       </div>
 
       {/* Main Content Body */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-5 space-y-5">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 space-y-6">
         {/* TAB 1: OPERATIONS OVERVIEW */}
         {activeTab === 'dashboard' && (
-          <div className="space-y-5">
+          <div className="space-y-6">
             {/* Top Grid: Interactive MENA Map + Selected Device Telemetry Detail */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               {/* Map (7 cols) */}
               <div className="lg:col-span-7">
                 <MenaMap
@@ -274,7 +271,7 @@ export default function App() {
             </div>
 
             {/* Bottom Row: Automated Actions Feed + Operational Health & Scenarios */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               {/* Automated Actions Feed (7 cols) */}
               <div className="lg:col-span-7">
                 <AutomatedActionsFeed
@@ -299,38 +296,38 @@ export default function App() {
 
         {/* TAB 2: CAMARA API ORCHESTRATION */}
         {activeTab === 'orchestrator' && (
-          <div className="space-y-5">
+          <div className="space-y-6">
             <CamaraInspector
               apiCalls={apiCalls}
               currentCycle={cycleCount}
             />
 
             {/* Orchestration Technical Specifications Card */}
-            <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-xs text-xs space-y-3">
-              <h4 className="font-bold text-slate-900 text-sm flex items-center gap-2">
-                <Radio className="w-4 h-4 text-orange-600" />
+            <div className="bg-[#20242c] border border-slate-700/80 rounded-xl p-5 shadow-xs text-xs space-y-3">
+              <h4 className="font-bold text-white text-sm flex items-center gap-2">
+                <Radio className="w-4 h-4 text-[#98cc65]" />
                 CAMARA Standardized Specification Mapping (Nokia Network-as-Code)
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 font-mono text-[11px]">
-                <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
-                  <div className="font-bold text-slate-900">Device Status v0.3</div>
-                  <div className="text-slate-600 mt-1">POST /camara/device-status/v0/status</div>
-                  <div className="text-slate-500 text-[10px] mt-0.5">Captures battery %, core temp, RF RSSI</div>
+                <div className="bg-[#181a1f] p-3.5 rounded-lg border border-slate-700/70">
+                  <div className="font-bold text-white">Device Status v0.3</div>
+                  <div className="text-slate-300 mt-1">POST /camara/device-status/v0/status</div>
+                  <div className="text-slate-400 text-[10px] mt-0.5">Captures battery %, core temp, RF RSSI</div>
                 </div>
-                <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
-                  <div className="font-bold text-slate-900">Congestion Insights v0.2</div>
-                  <div className="text-slate-600 mt-1">POST /camara/congestion-insights/v0/query</div>
-                  <div className="text-slate-500 text-[10px] mt-0.5">Forecasts localized cell tower saturation</div>
+                <div className="bg-[#181a1f] p-3.5 rounded-lg border border-slate-700/70">
+                  <div className="font-bold text-white">Congestion Insights v0.2</div>
+                  <div className="text-slate-300 mt-1">POST /camara/congestion-insights/v0/query</div>
+                  <div className="text-slate-400 text-[10px] mt-0.5">Forecasts localized cell tower saturation</div>
                 </div>
-                <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
-                  <div className="font-bold text-slate-900">Location Retrieval v0.2</div>
-                  <div className="text-slate-600 mt-1">POST /camara/location-retrieval/v0/retrieve</div>
-                  <div className="text-slate-500 text-[10px] mt-0.5">Verified GPS boundary and coverage audit</div>
+                <div className="bg-[#181a1f] p-3.5 rounded-lg border border-slate-700/70">
+                  <div className="font-bold text-white">Location Retrieval v0.2</div>
+                  <div className="text-slate-300 mt-1">POST /camara/location-retrieval/v0/retrieve</div>
+                  <div className="text-slate-400 text-[10px] mt-0.5">Verified GPS boundary and coverage audit</div>
                 </div>
-                <div className="bg-slate-50 p-3 rounded-lg border border-slate-200">
-                  <div className="font-bold text-orange-700">QoS on Demand v0.4</div>
-                  <div className="text-slate-600 mt-1">POST /camara/qod/v0/sessions</div>
-                  <div className="text-slate-500 text-[10px] mt-0.5">10Mbps URLLC slice under high risk</div>
+                <div className="bg-[#181a1f] p-3.5 rounded-lg border border-[#98cc65]/50">
+                  <div className="font-bold text-[#aee37d]">QoS on Demand v0.4</div>
+                  <div className="text-slate-300 mt-1">POST /camara/qod/v0/sessions</div>
+                  <div className="text-[#aee37d] text-[10px] mt-0.5">10Mbps URLLC slice under high risk</div>
                 </div>
               </div>
             </div>
@@ -339,7 +336,7 @@ export default function App() {
 
         {/* TAB 3: ASSET INVENTORY */}
         {activeTab === 'fleet' && (
-          <div className="space-y-5">
+          <div className="space-y-6">
             <DeviceTable
               devices={devices}
               predictions={predictions}
@@ -355,28 +352,28 @@ export default function App() {
 
         {/* TAB 4: NETWORK DEPENDENCY ARCHITECTURE */}
         {activeTab === 'silent_failure' && (
-          <div className="space-y-5">
+          <div className="space-y-6">
             <SilentFailureComparison />
 
             {/* Deep dive breakdown */}
-            <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-xs text-xs space-y-3">
-              <h4 className="font-bold text-slate-900 text-sm">
+            <div className="bg-[#20242c] border border-slate-700/80 rounded-xl p-5 shadow-xs text-xs space-y-3">
+              <h4 className="font-bold text-white text-sm">
                 Operational Reliability in Remote Regional Facilities
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed">
-                <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                  <strong className="text-slate-900 text-xs block mb-1">
+                <div className="bg-[#181a1f] p-4 rounded-lg border border-slate-700">
+                  <strong className="text-white text-xs block mb-1">
                     The Blindspot of Conventional Predictive Maintenance:
                   </strong>
-                  <p className="text-slate-600">
+                  <p className="text-slate-300">
                     If an IoT sensor disconnects due to cell tower saturation, traditional monitoring consoles register the device as idle or silent. Unmonitored degradation proceeds unchecked, leading to unplanned stoppages costing $15,000 to $45,000 per hour in continuous processing downtime.
                   </p>
                 </div>
-                <div className="bg-orange-50/40 p-4 rounded-lg border border-orange-200">
-                  <strong className="text-orange-900 text-xs block mb-1">
+                <div className="bg-[#181a1f] p-4 rounded-lg border border-[#98cc65]/50">
+                  <strong className="text-[#aee37d] text-xs block mb-1">
                     The CAMARA Orchestration Workflow:
                   </strong>
-                  <p className="text-slate-700">
+                  <p className="text-slate-200">
                     By monitoring cellular tower load and RF quality alongside mechanical telemetry, degradation models identify failure trajectories 48 to 72 hours in advance. The QoS on Demand API ensures reliable transmission of diagnostic data, automated load reduction lowers mechanical stress, and maintenance work orders are dispatched prior to failure.
                   </p>
                 </div>
@@ -387,26 +384,19 @@ export default function App() {
 
         {/* TAB 5: MAINTENANCE ECONOMICS */}
         {activeTab === 'roi' && (
-          <div className="space-y-5">
+          <div className="space-y-6">
             <RoiCalculator />
           </div>
         )}
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-slate-200 py-3 text-center text-xs text-slate-600 font-mono mt-auto">
+      <footer className="bg-[#20242c] border-t border-slate-700/80 py-4 text-center text-xs text-slate-300 font-mono mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-2">
           <span>MENA Open Gateway Hackathon | Theme 5: Industrial &amp; Enterprise Automation | Team: Phu Four</span>
-          <span>Nokia Network-as-Code | CAMARA Alliance Standards</span>
+          <span className="text-[#aee37d]">Nokia Network-as-Code | CAMARA Alliance Standards</span>
         </div>
       </footer>
-
-      {/* System Evaluation Guide Modal */}
-      <JudgePitchGuide
-        isOpen={isPitchModalOpen}
-        onClose={() => setIsPitchModalOpen(false)}
-        onSelectScenario={handleSelectScenario}
-      />
     </div>
   );
 }

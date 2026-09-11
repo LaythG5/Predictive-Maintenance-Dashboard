@@ -61,12 +61,12 @@ export const DeviceTable: React.FC<DeviceTableProps> = ({
   });
 
   return (
-    <div id="device-fleet-inventory" className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-xs flex flex-col">
+    <div id="device-fleet-inventory" className="bg-[#20242c] border border-slate-700/80 rounded-xl overflow-hidden shadow-xs flex flex-col">
       {/* Table Toolbar */}
-      <div className="bg-slate-900 px-4 py-3 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3">
+      <div className="bg-gradient-to-r from-[#608738] via-[#7aa948] to-[#98cc65] px-4 py-3 border-b border-[#527430] flex flex-wrap items-center justify-between gap-3 text-white">
         <div className="flex items-center gap-2">
-          <Activity className="w-4 h-4 text-orange-400" />
-          <h3 className="font-semibold text-sm text-slate-100">
+          <Activity className="w-4 h-4 text-white" />
+          <h3 className="font-bold text-sm text-white">
             Industrial Asset Fleet ({devices.length} Monitored Nodes)
           </h3>
         </div>
@@ -75,13 +75,13 @@ export const DeviceTable: React.FC<DeviceTableProps> = ({
         <div className="flex flex-wrap items-center gap-2">
           {/* Search box */}
           <div className="relative">
-            <Search className="w-3.5 h-3.5 absolute left-2.5 top-2.5 text-slate-400" />
+            <Search className="w-3.5 h-3.5 absolute left-2.5 top-2.5 text-white" />
             <input
               type="text"
               placeholder="Search ID, facility, country..."
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
-              className="bg-slate-800 border border-slate-700 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-100 placeholder:text-slate-400 focus:outline-none focus:border-orange-500 w-52"
+              className="bg-[#486b29]/80 border border-[#b8e886]/40 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder:text-slate-200 focus:outline-none focus:ring-1 focus:ring-white w-52"
             />
           </div>
 
@@ -89,24 +89,24 @@ export const DeviceTable: React.FC<DeviceTableProps> = ({
           <select
             value={sectorFilter}
             onChange={e => setSectorFilter(e.target.value as any)}
-            className="bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-orange-500"
+            className="bg-[#486b29]/80 border border-[#b8e886]/40 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:ring-1 focus:ring-white"
           >
-            <option value="all">All Sectors</option>
-            <option value="oil_gas">Oil &amp; Gas</option>
-            <option value="manufacturing">Manufacturing</option>
-            <option value="logistics">Logistics &amp; Ports</option>
+            <option value="all" className="text-white bg-[#20242c]">All Sectors</option>
+            <option value="oil_gas" className="text-white bg-[#20242c]">Oil &amp; Gas</option>
+            <option value="manufacturing" className="text-white bg-[#20242c]">Manufacturing</option>
+            <option value="logistics" className="text-white bg-[#20242c]">Logistics &amp; Ports</option>
           </select>
 
           {/* Risk Filter */}
           <select
             value={riskFilter}
             onChange={e => setRiskFilter(e.target.value as any)}
-            className="bg-slate-800 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-orange-500"
+            className="bg-[#486b29]/80 border border-[#b8e886]/40 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:ring-1 focus:ring-white"
           >
-            <option value="all">All Risk Levels</option>
-            <option value="critical">Critical (&gt;75%)</option>
-            <option value="warning">Warning (50-75%)</option>
-            <option value="nominal">Nominal (&lt;50%)</option>
+            <option value="all" className="text-white bg-[#20242c]">All Risk Levels</option>
+            <option value="critical" className="text-white bg-[#20242c]">Critical (&gt;75%)</option>
+            <option value="warning" className="text-white bg-[#20242c]">Warning (50-75%)</option>
+            <option value="nominal" className="text-white bg-[#20242c]">Nominal (&lt;50%)</option>
           </select>
         </div>
       </div>
@@ -114,12 +114,12 @@ export const DeviceTable: React.FC<DeviceTableProps> = ({
       {/* Table Container */}
       <div className="overflow-x-auto max-h-[380px] overflow-y-auto">
         <table className="w-full text-left text-xs border-collapse">
-          <thead className="bg-slate-50 sticky top-0 z-10 border-b border-slate-200 text-[11px] font-mono text-slate-600 uppercase tracking-wider">
+          <thead className="bg-[#181a1f] sticky top-0 z-10 border-b border-slate-700/80 text-[11px] font-mono text-slate-300 uppercase tracking-wider">
             <tr>
               <th className="py-2.5 px-3">Device &amp; Location</th>
               <th className="py-2.5 px-3">Type &amp; Sector</th>
               <th
-                className="py-2.5 px-3 cursor-pointer hover:text-slate-900"
+                className="py-2.5 px-3 cursor-pointer hover:text-[#98cc65]"
                 onClick={() => {
                   setSortBy('risk');
                   setSortAsc(!sortAsc);
@@ -127,7 +127,7 @@ export const DeviceTable: React.FC<DeviceTableProps> = ({
               >
                 <div className="flex items-center gap-1">
                   <span>Degradation Risk</span>
-                  <ArrowUpDown className="w-3 h-3 text-slate-400" />
+                  <ArrowUpDown className="w-3 h-3 text-[#98cc65]" />
                 </div>
               </th>
               <th className="py-2.5 px-3">Forecast Horizon</th>
@@ -136,7 +136,7 @@ export const DeviceTable: React.FC<DeviceTableProps> = ({
               <th className="py-2.5 px-3 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100 font-sans">
+          <tbody className="divide-y divide-slate-800 font-sans bg-[#181a1f]">
             {sorted.map(device => {
               const pred = predictions.get(device.device_id);
               const prob = pred?.failure_probability || 0;
@@ -150,26 +150,26 @@ export const DeviceTable: React.FC<DeviceTableProps> = ({
                   onClick={() => onSelectDevice(device.device_id)}
                   className={`cursor-pointer transition-colors ${
                     isSelected
-                      ? 'bg-orange-50/80 text-slate-900 border-l-4 border-orange-500 font-medium'
+                      ? 'bg-[#252a35] text-white border-l-4 border-[#98cc65] font-medium'
                       : isCritical
-                      ? 'bg-orange-50/30 hover:bg-orange-50/60'
-                      : 'hover:bg-slate-50'
+                      ? 'bg-[#98cc65]/10 hover:bg-[#98cc65]/20'
+                      : 'hover:bg-[#20242c]'
                   }`}
                 >
                   {/* Device & Location */}
                   <td className="py-2.5 px-3">
-                    <div className="font-semibold text-slate-900 flex items-center gap-1.5">
+                    <div className="font-bold text-white flex items-center gap-1.5">
                       {device.name}
                     </div>
-                    <div className="text-[11px] text-slate-500 font-mono">
+                    <div className="text-[11px] text-slate-400 font-mono">
                       {device.device_id} | {device.facility}, {device.country}
                     </div>
                   </td>
 
                   {/* Type & Sector */}
                   <td className="py-2.5 px-3 font-mono text-[11px]">
-                    <span className="capitalize text-slate-800">{device.type}</span>
-                    <div className="text-slate-500 text-[10px] uppercase">
+                    <span className="capitalize text-slate-200">{device.type}</span>
+                    <div className="text-slate-400 text-[10px] uppercase">
                       {device.sector.replace('_', ' ')}
                     </div>
                   </td>
@@ -180,16 +180,16 @@ export const DeviceTable: React.FC<DeviceTableProps> = ({
                       <span
                         className={`font-mono font-bold text-xs ${
                           isCritical
-                            ? 'text-orange-600'
+                            ? 'text-[#aee37d]'
                             : isWarning
-                            ? 'text-amber-600'
-                            : 'text-slate-800'
+                            ? 'text-amber-400'
+                            : 'text-white'
                         }`}
                       >
                         {(prob * 100).toFixed(1)}%
                       </span>
                       {isCritical && (
-                        <span className="text-[9px] font-mono px-1 py-0.5 rounded bg-orange-100 border border-orange-300 text-orange-800 font-bold">
+                        <span className="text-[9px] font-mono px-1 py-0.5 rounded bg-[#98cc65] border border-[#86bb54] text-[#12160e] font-bold">
                           QoS
                         </span>
                       )}
@@ -199,27 +199,27 @@ export const DeviceTable: React.FC<DeviceTableProps> = ({
                   {/* Forecast Horizon */}
                   <td className="py-2.5 px-3 font-mono text-xs">
                     {prob > 0.5 ? (
-                      <span className="text-orange-700 font-semibold">
+                      <span className="text-[#aee37d] font-semibold">
                         ~{pred?.predicted_failure_hours}h lead time
                       </span>
                     ) : (
-                      <span className="text-slate-500">Nominal (&gt;72h)</span>
+                      <span className="text-slate-400">Nominal (&gt;72h)</span>
                     )}
                   </td>
 
                   {/* Telemetry (Batt/Temp/Vib) */}
-                  <td className="py-2.5 px-3 font-mono text-[11px] text-slate-700">
+                  <td className="py-2.5 px-3 font-mono text-[11px] text-slate-200">
                     {pred ? (
                       <div className="space-x-1.5">
-                        <span className={pred.metrics.battery < 25 ? 'text-orange-600 font-bold' : ''}>
+                        <span className={pred.metrics.battery < 25 ? 'text-[#aee37d] font-bold' : ''}>
                           {pred.metrics.battery}%
                         </span>
-                        <span className="text-slate-400">/</span>
-                        <span className={pred.metrics.temp > 62 ? 'text-orange-600 font-bold' : ''}>
+                        <span className="text-slate-500">/</span>
+                        <span className={pred.metrics.temp > 62 ? 'text-[#aee37d] font-bold' : ''}>
                           {pred.metrics.temp}°C
                         </span>
-                        <span className="text-slate-400">/</span>
-                        <span className={pred.metrics.vibration > 5.5 ? 'text-orange-600 font-bold' : ''}>
+                        <span className="text-slate-500">/</span>
+                        <span className={pred.metrics.vibration > 5.5 ? 'text-[#aee37d] font-bold' : ''}>
                           {pred.metrics.vibration}mm/s
                         </span>
                       </div>
@@ -232,10 +232,10 @@ export const DeviceTable: React.FC<DeviceTableProps> = ({
                   <td className="py-2.5 px-3 font-mono text-[11px]">
                     {pred ? (
                       <div>
-                        <span className={pred.metrics.congestion > 80 ? 'text-orange-600 font-bold' : 'text-slate-800'}>
+                        <span className={pred.metrics.congestion > 80 ? 'text-[#aee37d] font-bold' : 'text-slate-200'}>
                           {pred.metrics.congestion}% load
                         </span>
-                        <span className="text-slate-500 text-[10px] block">
+                        <span className="text-slate-400 text-[10px] block">
                           Coverage: {pred.metrics.coverage}
                         </span>
                       </div>
@@ -249,13 +249,13 @@ export const DeviceTable: React.FC<DeviceTableProps> = ({
                     <div className="flex items-center justify-end gap-1.5" onClick={e => e.stopPropagation()}>
                       <button
                         onClick={() => onSelectDevice(device.device_id)}
-                        className="px-2 py-1 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 rounded text-[10px] font-medium shadow-xs"
+                        className="px-2 py-1 bg-[#2a2f3a] hover:bg-[#343b48] text-white border border-slate-600 rounded text-[10px] font-medium shadow-xs"
                       >
                         Inspect
                       </button>
                       <button
                         onClick={() => onInjectFailure(device.device_id)}
-                        className="px-2 py-1 bg-orange-50 hover:bg-orange-100 text-orange-800 border border-orange-300 rounded text-[10px] font-medium shadow-xs"
+                        className="px-2 py-1 bg-[#98cc65] hover:bg-[#86bb54] text-[#12160e] border border-[#86bb54] rounded text-[10px] font-bold shadow-xs"
                         title="Simulate bearing failure"
                       >
                         Fail
