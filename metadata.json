@@ -1,0 +1,6 @@
+{
+  "name": "CAMARA Industrial Predictive Maintenance Platform",
+  "description": "Industrial telemetry and CAMARA network API orchestration platform for equipment degradation forecasting across MENA facilities.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
